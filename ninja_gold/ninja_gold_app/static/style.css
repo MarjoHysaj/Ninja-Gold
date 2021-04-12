@@ -1,0 +1,22 @@
+.wrapper{
+    width: 100%;
+    display: block;
+}
+.header{
+    display: flex;
+    align-items: center;
+}
+.header input{
+    height: 30px;
+}
+.row{
+    display: flex;
+    justify-content: space-around;
+}
+.border{
+    border: 2px solid black;
+    padding: 20px;
+}
+.margin-left{
+    margin-left: 10px;
+}

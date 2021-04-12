@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h1>Your Gold:</h1>
+            <input class="margin-left" type="text" value="{{ request.session.gold_amount }}">
+            <a class="margin-left" href="/reset"><button>Reset</button></a>
+        </div>
+        <div class="row">
+            <form class="border" action="/proccess_money/farm" method="post">
+                {% csrf_token %}
+                <h2>Farm</h2>
+                <p>(earns 10 - 20 golds)</p>
+                <input type="submit" value="Find Gold!">
+            </form>
+            <form class="border" action="/proccess_money/cave" method="post">
+                {% csrf_token %}
+                <h2>Cave</h2>
+                <p>(earns 5 - 10 golds)</p>
+                <input type="submit" value="Find Gold!">
+            </form>
+            <form class="border" action="/proccess_money/house" method="post">
+                {% csrf_token %}
+                <h2>House</h2>
+                <p>(earns 2 - 5 golds)</p>
+                <input type="submit" value="Find Gold!">
+            </form>
+            <form class="border" action="/proccess_money/casino" method="post">
+                {% csrf_token %}
+                <h2>Casino</h2>
+                <p>(earns/takes 0 - 50 golds)</p>
+                <input type="submit" value="Try Luck!">
+            </form>
+        </div>
+        <h3>Activities</h3>
+        <div>
+            {% for activity in request.session.activities %}
+                <p style="color:{{ activity.color }}">{{ activity.activity }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
